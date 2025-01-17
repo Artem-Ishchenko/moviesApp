@@ -3,11 +3,15 @@ import globals from 'globals'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import importPlugin from 'eslint-plugin-import'
+import stylisticJs from '@stylistic/eslint-plugin-js'
 
 export default [
-  { ignores: ['dist'] },
+  importPlugin.flatConfigs.recommended,
+  { ignores: ['node_modules', 'dist', 'build', '**/*.config.js'] },
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,jsx,mjs,cjs}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -22,6 +26,7 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      '@stylistic/js': stylisticJs,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -33,6 +38,37 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error',
+      'react/prop-types': 0,
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      'import/no-unresolved': [2, { caseSensitive: false }],
+      '@stylistic/js/indent': ['error', 2, { SwitchCase: 1 }],
+      "import/order": [
+      2,
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ],
     },
   },
+  {
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"],
+          "moduleDirectory": ["node_modules", "src/"]
+        }
+      }
+    }
+  },
+  eslintPluginPrettierRecommended,
 ]
