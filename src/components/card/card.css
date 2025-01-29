@@ -1,0 +1,16 @@
+.card-main {
+  background-color: #ffffff;
+  width: 450px;
+  height: 270px;
+  box-shadow: 0px 4px 12px 0px #00000026;
+  display: flex;
+}
+.card-main__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 12px 0px #00000026;
+  position: relative;
+  min-width: 180px;
+  height: 100%;
+}

@@ -1,0 +1,25 @@
+import { Component } from 'react';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Flex, Spin } from 'antd';
+
+import './spin.css';
+
+export default class MySpin extends Component {
+  render() {
+    return (
+      <Flex align="center" gap="middle">
+        {' '}
+        <Spin
+          indicator={
+            <LoadingOutlined
+              style={{
+                fontSize: 70,
+              }}
+              spin
+            />
+          }
+        />
+      </Flex>
+    );
+  }
+}

@@ -1,0 +1,13 @@
+.card-main__image-fullfiled {
+  width: 180px;
+  height: 100%;
+}
+.card-main__image-default {
+  width: 180px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
