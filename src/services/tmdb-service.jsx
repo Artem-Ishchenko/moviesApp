@@ -12,7 +12,7 @@ export default class TmdbService {
     },
   };
 
-  async getResource() {
+  async getAuthenticResource() {
     const result = await fetch('https://api.themoviedb.org/3/authentication', this.options);
     const data = result.json();
     return data;
@@ -24,9 +24,9 @@ export default class TmdbService {
     return data;
   }
 
-  async getQuery(text) {
+  async getQuery(text, page) {
     const result = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${text}&include_adult=false&language=en-US&page=1`,
+      `https://api.themoviedb.org/3/search/movie?query=${text}&include_adult=false&language=en-US&page=${page}`,
       this.options
     );
     const data = await result.json();
@@ -35,6 +35,12 @@ export default class TmdbService {
 
   async getConfigsImages() {
     const result = await fetch(`https://api.themoviedb.org/3/configuration`, this.options);
+    const data = await result.json();
+    return data;
+  }
+
+  async getPopularMovies(page) {
+    const result = await fetch(`https://api.themoviedb.org/3/movie/popular?page=${page}`, this.options);
     const data = await result.json();
     return data;
   }
