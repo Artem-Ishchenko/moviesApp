@@ -22,14 +22,7 @@ export default class MyPagination extends Component {
         }}
       >
         {' '}
-        <Pagination
-          className="mypagination-design"
-          defaultCurrent={current}
-          total={total}
-          showSizeChanger={false}
-          pageSize={20}
-          onChange={onChange}
-        />
+        <Pagination defaultCurrent={current} total={total} showSizeChanger={false} pageSize={20} onChange={onChange} />
       </ConfigProvider>
     );
   }

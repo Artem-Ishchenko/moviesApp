@@ -3,42 +3,38 @@ import { parseISO, format } from 'date-fns';
 
 import Description from '../description';
 import Image from '../image/image';
+
 import './card.css';
 
 export default class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image_path: this.props.settings.poster_path,
-      name: this.props.settings.title,
-      date: this.props.settings.release_date,
-      text: this.props.settings.overview,
+      formattedDate: '',
     };
   }
 
-  funcDate = (yourDate) => {
-    if (yourDate) {
-      return format(parseISO(yourDate), 'MMMM d, y');
+  componentDidMount() {
+    const { release_date } = this.props.settings;
+    if (release_date) {
+      this.setState({ formattedDate: format(parseISO(release_date), 'MMMM d, y') });
     }
-  };
+  }
 
   render() {
-    const { changeTextSize } = this.props;
-
-    const image = <Image urlPath={this.state.image_path} />;
-
-    const contetn = (
-      <Description
-        name={this.state.name}
-        date={this.funcDate(this.state.date)}
-        text={changeTextSize(this.state.text)}
-      />
-    );
+    const { poster_path, title, overview, vote_average, genre_ids } = this.props.settings;
 
     return (
       <div className="card-main">
-        {image}
-        {contetn}
+        <Image urlPath={poster_path} />
+        <Description
+          name={title}
+          date={this.state.formattedDate}
+          text={overview}
+          ratingNumber={vote_average}
+          genreId={genre_ids}
+          maxLength={120}
+        />
       </div>
     );
   }

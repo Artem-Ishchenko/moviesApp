@@ -32,7 +32,14 @@ export default class Image extends Component {
     !error && (clazz = 'card-main__image-fullfiled');
     return (
       <div className="card-main__image">
-        <img className={clazz} src={imageSrc} alt="Sample" onError={this.handleImageError} style={{ width: '100%' }} />
+        <img
+          className={clazz}
+          src={imageSrc}
+          alt="Sample"
+          onError={this.handleImageError}
+          style={{ width: '100%' }}
+          loading="lazy"
+        />
       </div>
     );
   }

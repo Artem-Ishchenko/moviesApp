@@ -44,4 +44,10 @@ export default class TmdbService {
     const data = await result.json();
     return data;
   }
+
+  async getGanre() {
+    const result = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru-RU', this.options);
+    const data = await result.json();
+    return data;
+  }
 }
